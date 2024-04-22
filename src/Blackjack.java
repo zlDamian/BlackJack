@@ -5,41 +5,45 @@ public class Blackjack {
 
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
-		boolean nochmal = true;
-		int guthaben = 100;
+//Spieler Klasse importieren
+		Spieler spieler;
+		spieler = new Spieler();
 		
-		System.out.println("Willkommen zu unserem!");
+		Scanner sc = new Scanner(System.in);
+		boolean ende = false;
+//Willkommens Nachricht	
+		System.out.println("Willkommen zu unserem Game!");
 		System.out.println(
 	                "\n――――――――――――――――――――――――――\n  " +
 	                "♥♦ Black Jack ♣♠" +
 	                "\n――――――――――――――――――――――――――\n");
-		System.out.print("Gib deinen Namen ein: ");
-		String player = new String(sc.nextLine());
 		
-		System.out.println();
-		System.out.println("Willkommen " + player + "! Dein aktuelles Guthaben beträgt: €" + guthaben);
-		System.out.println("\nLos gehts...");
-		System.out.println();	
+		System.out.print("Gib deinen Spielernamen ein: ");
+		spieler.name = sc.nextLine();
 		
+		System.out.println("\nWillkommen " + spieler.name + " dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
+		System.out.println("Los gehts...");	
 		
-		while (nochmal == true) {
+//Prüfe ob nochmal gespielt wird
+		while (ende == false) {
+			System.out.println("\nGib deinen Einsatz ein:");
+			spieler.einsatz = sc.nextInt();
 			
-			int einsatz = 0;
-			System.out.println("Gib deinen Einsatz ein:");
-			einsatz = sc.nextInt();
-			
-			 while(einsatz < 1 || einsatz > guthaben) {
+//Prüfe das Einsatz zwischen 1 und Guthaben ist
+			 while(spieler.einsatz < 1 || spieler.einsatz > spieler.guthaben) {
 				 
-					System.out.println("Dein Einsatz ist ungültig, gib es nochmal ein");
-					einsatz = sc.nextInt();
+					System.out.println("Dein Einsatz ist ungültig, gib ihn nochmal ein");
+					spieler.einsatz = sc.nextInt();
 			 }
-			
-			
-			
-			
-			Random karte = new Random();
-			
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 		}
 	                
 	                
