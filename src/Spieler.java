@@ -6,5 +6,16 @@ public class Spieler {
 	int einsatz = 0;
 	
 	
+	public void BlackJack(){
+		
+	}
 	
+	public void Gewonnen(){
+		guthaben += einsatz;
+	}
+	
+	public void Verloren(){
+		guthaben -= einsatz; 
+	}
+
 }
