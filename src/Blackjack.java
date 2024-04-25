@@ -56,10 +56,10 @@ public class Blackjack {
         for (String suit : suits) {
             for (String rank : ranks) {
                 deck.add(new Card(rank, suit));
+                System.out.println("test");
             }
         }
     }
-    
     // Methode zum Mischen des Kartendecks
     private static void mischeDeck() {
         Collections.shuffle(deck);
