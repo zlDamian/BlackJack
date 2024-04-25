@@ -41,6 +41,7 @@ public class Blackjack {
 //Random Test
 		Random karten = new Random();  	
 		String[] Zehner = new String[] { "10", "Jack", "Queen", "King" };
+		System.out.println("Test");
 		
 			 
 			 
