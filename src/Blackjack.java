@@ -17,7 +17,6 @@ public class Blackjack {
 	                "\n――――――――――――――――――――――――――\n  " +
 	                "♥♦ Black Jack ♣♠" +
 	                "\n――――――――――――――――――――――――――\n");
-		System.out.println("TEST");
 		
 		System.out.print("Gib deinen Spielernamen ein: ");
 		spieler.name = sc.nextLine();
@@ -42,6 +41,7 @@ public class Blackjack {
 //Random Test
 		Random karten = new Random();  	
 		String[] Zehner = new String[] { "10", "Jack", "Queen", "King" };
+		System.out.println("Test");
 		
 			 
 			 
