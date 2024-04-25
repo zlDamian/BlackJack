@@ -51,7 +51,7 @@ public class Blackjack {
                 deck.add(new Card(rank, suit));
             }
         }
-			 
+			 System.out.println("rest");
 			 
 			 
 		}
