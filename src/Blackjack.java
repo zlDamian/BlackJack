@@ -44,7 +44,13 @@ public class Blackjack {
 		String[] Zehner = new String[] { "10", "Jack", "Queen", "King" };
 		
 			 
-			 
+		String[] suits = {"♠", "♥", "♦", "♣"};
+        String[] ranks =         {"2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "D", "K", "A"};
+        for (String suit : suits) {
+            for (String rank : ranks) {
+                deck.add(new Card(rank, suit));
+            }
+        }
 			 
 			 
 			 
