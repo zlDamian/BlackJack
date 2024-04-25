@@ -1,9 +1,17 @@
 import java.util.Scanner;
+
+import bj.BJ.Card;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Blackjack {
 
+	private ArrayList<Card> deck;
+	
 	public static void main(String[] args) {
+		
+		deck = new ArrayList<>();
 		
 //Spieler Klasse importieren
 		Spieler spieler;
@@ -50,9 +58,7 @@ public class Blackjack {
             for (String rank : ranks) {
                 deck.add(new Card(rank, suit));
             }
-        }
-			 System.out.println("rest");
-			 
+        }		 
 			 
 		}
 	                
