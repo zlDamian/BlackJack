@@ -18,7 +18,7 @@ public class Blackjack {
         System.out.println("――――――――――――――――――――――――――");
         System.out.println("  ♥♦ Black Jack ♣♠");
         System.out.println("――――――――――――――――――――――――――");
-        
+        System.out.println(deck);
         System.out.print("Gib deinen Spielernamen ein: ");
         spieler.name = sc.nextLine();
         
