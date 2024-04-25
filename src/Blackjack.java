@@ -18,7 +18,7 @@ public class Blackjack {
         System.out.println("――――――――――――――――――――――――――");
         System.out.println("  ♥♦ Black Jack ♣♠");
         System.out.println("――――――――――――――――――――――――――");
-        System.out.println(deck);
+
         System.out.print("Gib deinen Spielernamen ein: ");
         spieler.name = sc.nextLine();
         
@@ -34,7 +34,7 @@ public class Blackjack {
                 spieler.einsatz = sc.nextInt();
             }
             
-            // Hier können Sie den Code für das Mischen und Austeilen der Karten einfügen
+            // Hier können Sie den Code für das Mischen und Aus teilen der Karten einfügen
             // Ich füge beispielsweise eine Methode hinzu, um das Deck zu erstellen
             erstelleDeck();
             mischeDeck();
