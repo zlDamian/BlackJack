@@ -56,7 +56,6 @@ public class Blackjack {
         for (String suit : suits) {
             for (String rank : ranks) {
                 deck.add(new Card(rank, suit));
-                System.out.println("test");
             }
         }
     }
@@ -73,6 +72,10 @@ class Card {
     Card(String rank, String suit) {
         this.rank = rank;
         this.suit = suit;
+    }
+    
+    public String toString() {
+        return rank + suit; // Kartenrang und Symbol kombinieren
     }
 }
 
