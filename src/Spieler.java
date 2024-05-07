@@ -2,7 +2,7 @@
 public class Spieler {
 	
 	String name;
-	int guthaben = 1000;
+	int guthaben = 100;
 	int einsatz = 0;
 	
 	
