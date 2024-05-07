@@ -3,16 +3,16 @@ import java.util.Collections;
 
 class Deck {
 
-	public static ArrayList<Card> deck; // Initialisierung des Decks
+	public ArrayList<Card> deck; // Initialisierung des Decks
 	
     // Methode zum Erstellen des Kartendecks
     public void erstelleDeck() {
     	
     	deck = new ArrayList<>();
-        String[] typ = {"♠", "♥", "♦", "♣"};
+        String[] farbe = {"♠", "♥", "♦", "♣"};
         String[] wert = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "D", "K", "A"};
         
-        for (String suit : typ) {
+        for (String suit : farbe) {
             for (String rank : wert) {
                 deck.add(new Card(rank, suit));
             }
@@ -24,10 +24,22 @@ class Deck {
         Collections.shuffle(deck);
     }
     
-    public void gebeKarte() {
-
+    public Card zieheKarte() {
+        if (!deck.isEmpty()) {
+            return deck.remove(deck.size() - 1); // Zieht die oberste Karte vom Deck
+        }
+        return null; // Gibt null zurück, falls das Deck leer ist
     }
     
+    public static int kartenWert(Deck.Card karte) {
+        if (karte.rank.equals("B") || karte.rank.equals("D") || karte.rank.equals("K")) {
+            return 10;
+        } else if (karte.rank.equals("A")) {
+            return 11;
+        } else {
+            return Integer.parseInt(karte.rank);
+        }
+}
     class Card {
         String rank;
         String suit;

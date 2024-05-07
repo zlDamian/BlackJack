@@ -1,15 +1,13 @@
 import java.util.Scanner;
 
 public class Blackjack {
-
-
+	
     public static void main(String[] args) {
         Spieler spieler = new Spieler(); // Spielerobjekt erstellen
         Deck deck = new Deck(); // Spielerobjekt erstellen
         
         Scanner sc = new Scanner(System.in);
         boolean ende = false;
-        int total = 0;
         
         // Willkommens Nachricht
         
@@ -40,13 +38,26 @@ public class Blackjack {
             deck.erstelleDeck();
             deck.mischeDeck();
             // Hier können Sie weitere Spiellogik einfügen
+            Deck.Card spielerKarte1 = deck.zieheKarte();
+            Deck.Card spielerKarte2 = deck.zieheKarte();
+            Deck.Card dealerKarte1 = deck.zieheKarte();
+            Deck.Card dealerKarte2 = deck.zieheKarte();    
             
-            // Spiel beenden
-            ende = true;
+            int spielerTotal = Deck.kartenWert(spielerKarte1) + Deck.kartenWert(spielerKarte2);
+            int dealerTotal = Deck.kartenWert(dealerKarte1) + Deck.kartenWert(dealerKarte2);
+            
+            System.out.println("Deine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
+            System.out.println("Dealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
+            
+            boolean spielerAmZug = true;
+            
+ 
         }
         
-        sc.close(); // Scanner schließen, um Ressourcen freizugeben
+        System.out.println("Danke fürs Spielen. Bis zum nächsten Mal!");
+        sc.close();
     }
+
 }
 
 
