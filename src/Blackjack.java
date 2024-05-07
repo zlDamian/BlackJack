@@ -50,11 +50,11 @@ public class Blackjack {
 
     // Methode zum Erstellen des Kartendecks
     private static void erstelleDeck() {
-        String[] suits = {"♠", "♥", "♦", "♣"};
-        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "D", "K", "A"};
+        String[] typ = {"♠", "♥", "♦", "♣"};
+        String[] wert = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "D", "K", "A"};
         
-        for (String suit : suits) {
-            for (String rank : ranks) {
+        for (String suit : typ) {
+            for (String rank : wert) {
                 deck.add(new Card(rank, suit));
             }
         }
@@ -76,23 +76,5 @@ class Card {
     
     public String toString() {
         return rank + suit; // Kartenrang und Symbol kombinieren
-    }
-}
-
-class Spieler {
-    String name;
-    int guthaben = 100;
-    int einsatz = 0;
-    
-    public void BlackJack(){
-        
-    }
-    
-    public void Gewonnen(){
-        guthaben += einsatz;
-    }
-    
-    public void Verloren(){
-        guthaben -= einsatz; 
     }
 }
