@@ -7,7 +7,7 @@ public class Spieler {
 	
 	
 	public void BlackJack(){
-		
+		guthaben += (int) (einsatz * 1.5);
 	}
 	
 	public void Gewonnen(){

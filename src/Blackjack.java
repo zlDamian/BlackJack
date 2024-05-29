@@ -31,16 +31,36 @@ public class Blackjack {
             }
             
             Deck.Card spielerKarte1 = deck.zieheKarte();
+            System.out.println("\nDeine erste Karte wird ausgeteilt...");
+            Pause.pausieren(1000); // Pause für 1 Sekunde
+            System.out.println("Deine erste Karte: " + spielerKarte1.rank + spielerKarte1.suit);
+
             Deck.Card spielerKarte2 = deck.zieheKarte();
+            System.out.println("Deine zweite Karte wird ausgeteilt...");
+            Pause.pausieren(1000); // Pause für 1 Sekunde
+            System.out.println("Deine zweite Karte: " + spielerKarte2.rank + spielerKarte2.suit);
+
             Deck.Card dealerKarte1 = deck.zieheKarte();
+            System.out.println("\nDie erste Karte des Dealers wird ausgeteilt...");
+            Pause.pausieren(1000); // Pause für 1 Sekunde
+            System.out.println("Dealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
+
             Deck.Card dealerKarte2 = deck.zieheKarte();
-            
+            System.out.println("Die zweite Karte des Dealers wird ausgeteilt...");
+            Pause.pausieren(1000); // Pause für 1 Sekunde
+            System.out.println("Die zweite Karte des Dealers bleibt verdeckt.");
+
             int spielerTotal = kartenWert(spielerKarte1) + kartenWert(spielerKarte2);
             int dealerTotal = kartenWert(dealerKarte1) + kartenWert(dealerKarte2);
-            
+
             System.out.println("\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
             System.out.println("Dein Gesamtwert: " + spielerTotal);
-            System.out.println("\nDealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
+            System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
+
+
+            System.out.println("\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
+            System.out.println("Dein Gesamtwert: " + spielerTotal);
+            System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
             
             boolean spielerAmZug = true;
             boolean verdoppelt = false;
@@ -102,6 +122,10 @@ public class Blackjack {
                 }
                 
                 if (dealerTotal > 21) {
+                if (spielerTotal == 21) {
+                    System.out.println("Glückwunsch! Du hast Blackjack erreicht und erhältst 1,5-fachen Gewinn!");
+                    spieler.BlackJack();
+                }
                     System.out.println("\nDer Dealer hat den Wert 21 überschritten. Du hast gewonnen!");
                     spieler.Gewonnen();
                 } else if (spielerTotal > dealerTotal) {
@@ -132,6 +156,15 @@ public class Blackjack {
         
         System.out.println("Danke fürs Spielen. Bis zum nächsten Mal!");
         sc.close();
+    }
+    public class Pause {
+        public static void pausieren(int millisekunden) {
+            try {
+                Thread.sleep(millisekunden);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     public static int kartenWert(Deck.Card karte) {
