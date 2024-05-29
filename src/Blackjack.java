@@ -62,6 +62,27 @@ public class Blackjack {
             System.out.println("Dein Gesamtwert: " + spielerTotal);
             System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
             
+            if (spielerTotal == 21) {
+                System.out.println("\nGlückwunsch! Du hast Blackjack und gewinnst das Spiel!");
+                spieler.BlackJack();
+                Pause.pausieren(2000); // Pause für 2 Sekunden
+                System.out.println("Dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
+                
+                if (spieler.guthaben <= 0) {
+                    System.out.println("Du hast kein Guthaben mehr. Das Spiel ist beendet.");
+                    ende = true;
+                } else {
+                    System.out.println("\nMöchtest du noch eine Runde spielen? (j/n)");
+                    String antwort = sc.next();
+                    
+                    if (!antwort.equalsIgnoreCase("j")) {
+                        ende = true;
+                    }
+                }
+                
+                continue; // Springe zur nächsten Iteration der while-Schleife
+            }
+            
             boolean spielerAmZug = true;
             boolean verdoppelt = false;
             
