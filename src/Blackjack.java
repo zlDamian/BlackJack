@@ -21,7 +21,7 @@ public class Blackjack {
             Deck deck = new Deck();
             deck.erstelleDeck();
             deck.mischeDeck();
-            //Test
+            
             System.out.println("\nGib deinen Einsatz ein:");
             spieler.einsatz = sc.nextInt();
             
