@@ -127,6 +127,7 @@ public class Blackjack {
                 System.out.println("\nMöchtest du noch eine Karte ziehen, verdoppeln oder aufhören? (z/v/a)");
                 String antwort = sc.next();
                 
+                
                 if (antwort.equalsIgnoreCase("z")) {
                     Deck.Card neueKarte = deck.zieheKarte();
                     spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
