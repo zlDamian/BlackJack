@@ -9,7 +9,6 @@ Nachdem der Spieler seine Züge abgeschlossen hat, zieht der Dealer Karten, bis 
 Wenn der Dealer über 21 kommt, gewinnt der Spieler.
 Ansonsten gewinnt derjenige, dessen Gesamtwert näher an 21 liegt.
 
-Beitrag
 Wenn du Verbesserungsvorschläge, Fehlerkorrekturen oder zusätzliche Funktionen hast, kannst du gerne einen Pull-Request erstellen oder ein Issue eröffnen. Dein Beitrag ist willkommen!
 
 Viel Spaß beim Spielen!
