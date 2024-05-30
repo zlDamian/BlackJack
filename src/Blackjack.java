@@ -41,7 +41,7 @@ public class Blackjack {
             System.out.println("Deine zweite Karte: " + spielerKarte2.rank + spielerKarte2.suit);
 
             Deck.Card dealerKarte1 = deck.zieheKarte();
-            System.out.println("\n――――――――――――――――――――――――――");
+            System.out.println("――――――――――――――――――――――――――");
             System.out.println("Die Karten des Dealers werden ausgeteilt");
             Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Dealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
@@ -53,11 +53,11 @@ public class Blackjack {
             int spielerTotal = Deck.kartenWert(spielerKarte1, 0) + Deck.kartenWert(spielerKarte2, Deck.kartenWert(spielerKarte1, 0));
             int dealerTotal = Deck.kartenWert(dealerKarte1, 0) + Deck.kartenWert(dealerKarte2, Deck.kartenWert(dealerKarte1, 0));
 
-            System.out.println("\n――――――――――――――――――――――――――");
-            System.out.println("Deine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
+            System.out.println("――――――――――――――――――――――――――");
+            System.out.println("\n\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
             System.out.println("Dein Gesamtwert: " + spielerTotal);
             System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
-            System.out.println("――――――――――――――――――――――――――");
+            System.out.println("\n\n――――――――――――――――――――――――――");
 
             
             
@@ -160,11 +160,13 @@ public class Blackjack {
             System.out.println("Dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
 
             if (spieler.guthaben <= 0) {
+            	System.out.println("\n――――――――――――――――――――――――――");
                 System.out.println("Du hast kein Guthaben mehr. Das Spiel ist beendet.");
                 ende = true;
             } else {
                 if (dealerTotal == 21 && spielerTotal == 21) {
-                    System.out.println("\nUnentschieden! Beide haben Blackjack.");
+                	System.out.println("\n――――――――――――――――――――――――――");
+                    System.out.println("Unentschieden! Beide haben Blackjack.");
                     System.out.println("Dein Einsatz wird zurückerstattet.");
                     spieler.guthaben += spieler.einsatz;
                 }
@@ -181,6 +183,7 @@ public class Blackjack {
             }
 
             if (ende) {
+            	System.out.println("――――――――――――――――――――――――――");
                 System.out.println("Vielen Dank fürs Spielen. Auf Wiedersehen!");
                 break;
             }
