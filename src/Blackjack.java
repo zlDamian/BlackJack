@@ -134,6 +134,7 @@ public class Blackjack {
                     System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
                     
                     if (spielerTotal > 21) {
+                    	
                         System.out.println("\nDu hast den Wert 21 überschritten. Du hast verloren.");
                         spieler.Verloren();
                         spielerAmZug = false;
