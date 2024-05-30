@@ -128,7 +128,7 @@ public class Blackjack {
                 String antwort = sc.next();
                 
                 
-                
+              
                 if (antwort.equalsIgnoreCase("z")) {
                     Deck.Card neueKarte = deck.zieheKarte();
                     spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
