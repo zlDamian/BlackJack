@@ -31,15 +31,22 @@ class Deck {
         return null; // Gibt null zurück, falls das Deck leer ist
     }
     
-    public static int kartenWert(Deck.Card karte) {
+    public static int kartenWert(Deck.Card karte, int spielerTotal) {
         if (karte.rank.equals("B") || karte.rank.equals("D") || karte.rank.equals("K")) {
             return 10;
         } else if (karte.rank.equals("A")) {
-            return 11;
+            if (spielerTotal + 11 <= 21) {
+                return 11;
+            } else {
+                return 1;
+            }
         } else {
             return Integer.parseInt(karte.rank);
         }
-}
+    }
+    
+    
+    
     class Card {
         String rank;
         String suit;

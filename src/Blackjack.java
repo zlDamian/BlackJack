@@ -31,36 +31,30 @@ public class Blackjack {
             }
             
             Deck.Card spielerKarte1 = deck.zieheKarte();
-            System.out.println("\nDeine erste Karte wird ausgeteilt...");
+            System.out.println("\nDeine Karten werden ausgeteilt...");
             Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Deine erste Karte: " + spielerKarte1.rank + spielerKarte1.suit);
 
             Deck.Card spielerKarte2 = deck.zieheKarte();
-            System.out.println("Deine zweite Karte wird ausgeteilt...");
             Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Deine zweite Karte: " + spielerKarte2.rank + spielerKarte2.suit);
 
             Deck.Card dealerKarte1 = deck.zieheKarte();
-            System.out.println("\nDie erste Karte des Dealers wird ausgeteilt...");
+            System.out.println("\nDie Karten des Dealers werden ausgeteilt");
             Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Dealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
 
             Deck.Card dealerKarte2 = deck.zieheKarte();
-            System.out.println("Die zweite Karte des Dealers wird ausgeteilt...");
             Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Die zweite Karte des Dealers bleibt verdeckt.");
 
-            int spielerTotal = kartenWert(spielerKarte1) + kartenWert(spielerKarte2);
-            int dealerTotal = kartenWert(dealerKarte1) + kartenWert(dealerKarte2);
+            int spielerTotal = Deck.kartenWert(spielerKarte1, 0) + Deck.kartenWert(spielerKarte2, Deck.kartenWert(spielerKarte1, 0));
+            int dealerTotal = Deck.kartenWert(dealerKarte1, 0) + Deck.kartenWert(dealerKarte2, Deck.kartenWert(dealerKarte1, 0));
 
             System.out.println("\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
             System.out.println("Dein Gesamtwert: " + spielerTotal);
             System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
 
-
-            System.out.println("\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
-            System.out.println("Dein Gesamtwert: " + spielerTotal);
-            System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
             
             if (spielerTotal == 21) {
                 System.out.println("\nGlückwunsch! Du hast Blackjack und gewinnst das Spiel!");
@@ -87,12 +81,14 @@ public class Blackjack {
             boolean verdoppelt = false;
             
             while (spielerAmZug) {
-                System.out.println("\nMöchtest du noch eine Karte ziehen, verdoppeln oder aufhören? (z/v/a)");
+                System.out.println("\nMöchtest du noch eine Karte (z)iehen, (v)erdoppeln oder (a)ufhören?");
                 String antwort = sc.next();
                 
                 if (antwort.equalsIgnoreCase("z")) {
-                    Deck.Card neueKarte = deck.zieheKarte();
-                    spielerTotal += kartenWert(neueKarte);
+                	Deck.Card neueKarte = deck.zieheKarte();
+                	spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
+                	System.out.println("Eine Karte wird für dich ausgeteilt...");
+                	Pause.pausieren(1000); // Pause für 1 Sekunde
                     System.out.println("Deine neue Karte: " + neueKarte.rank + neueKarte.suit);
                     System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
                     
@@ -107,7 +103,9 @@ public class Blackjack {
                             spieler.einsatz *= 2;
                             System.out.println("Dein Einsatz wurde verdoppelt: €" + spieler.einsatz);
                             Deck.Card neueKarte = deck.zieheKarte();
-                            spielerTotal += kartenWert(neueKarte);
+                            spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
+                        	System.out.println("Eine Karte wird für dich ausgeteilt...");
+                        	Pause.pausieren(1000); // Pause für 1 Sekunde
                             System.out.println("Deine neue Karte: " + neueKarte.rank + neueKarte.suit);
                             System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
                             verdoppelt = true;
