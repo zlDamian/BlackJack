@@ -31,29 +31,33 @@ public class Blackjack {
             }
             
             Deck.Card spielerKarte1 = deck.zieheKarte();
-            System.out.println("\nDeine Karten werden ausgeteilt...");
-           //Pause.pausieren(1000); // Pause für 1 Sekunde
+            System.out.println("\n――――――――――――――――――――――――――");
+            System.out.println("Deine Karten werden ausgeteilt...");
+            Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Deine erste Karte: " + spielerKarte1.rank + spielerKarte1.suit);
 
             Deck.Card spielerKarte2 = deck.zieheKarte();
-            //Pause.pausieren(1000); // Pause für 1 Sekunde
+            Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Deine zweite Karte: " + spielerKarte2.rank + spielerKarte2.suit);
 
             Deck.Card dealerKarte1 = deck.zieheKarte();
-            System.out.println("\nDie Karten des Dealers werden ausgeteilt");
-            //Pause.pausieren(1000); // Pause für 1 Sekunde
+            System.out.println("\n――――――――――――――――――――――――――");
+            System.out.println("Die Karten des Dealers werden ausgeteilt");
+            Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Dealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
 
             Deck.Card dealerKarte2 = deck.zieheKarte();
-            //Pause.pausieren(1000); // Pause für 1 Sekunde
+            Pause.pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Die zweite Karte des Dealers bleibt verdeckt.");
 
             int spielerTotal = Deck.kartenWert(spielerKarte1, 0) + Deck.kartenWert(spielerKarte2, Deck.kartenWert(spielerKarte1, 0));
             int dealerTotal = Deck.kartenWert(dealerKarte1, 0) + Deck.kartenWert(dealerKarte2, Deck.kartenWert(dealerKarte1, 0));
 
-            System.out.println("\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
+            System.out.println("\n――――――――――――――――――――――――――");
+            System.out.println("Deine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
             System.out.println("Dein Gesamtwert: " + spielerTotal);
             System.out.println("\nDealer sichtbare Karte: " + dealerKarte1.rank + dealerKarte1.suit);
+            System.out.println("――――――――――――――――――――――――――");
 
             
             
@@ -70,6 +74,7 @@ public class Blackjack {
                     spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
                     System.out.println("Deine neue Karte: " + neueKarte.rank + neueKarte.suit);
                     System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
+                    System.out.println("――――――――――――――――――――――――――");
                     
                     if (spielerTotal > 21) {
                     	
@@ -113,9 +118,10 @@ public class Blackjack {
             }
             
             if (spielerTotal == 21) {
-                System.out.println("\nDealer Karten: " + dealerKarte1.rank + dealerKarte1.suit + ", " + dealerKarte2.rank + dealerKarte2.suit);
+            	System.out.println("\n――――――――――――――――――――――――――");
+                System.out.println("Dealer Karten: " + dealerKarte1.rank + dealerKarte1.suit + ", " + dealerKarte2.rank + dealerKarte2.suit);
                 System.out.println("Dealer Gesamtwert: " + dealerTotal);
-                
+                System.out.println("――――――――――――――――――――――――――");
                 if (dealerTotal == 21) {
                     System.out.println("\nUnentschieden! Beide haben Blackjack.");
                 } else {
@@ -123,14 +129,17 @@ public class Blackjack {
                     spieler.BlackJack();
                 }
             } else if (spielerTotal <= 21) {
+            	System.out.println("\n――――――――――――――――――――――――――");
                 System.out.println("\nDealer Karten: " + dealerKarte1.rank + dealerKarte1.suit + ", " + dealerKarte2.rank + dealerKarte2.suit);
                 System.out.println("Dealer Gesamtwert: " + dealerTotal);
-                
+                System.out.println("――――――――――――――――――――――――――");                
                 while (dealerTotal < 17) {
                     Deck.Card neueKarte = deck.zieheKarte();
                     dealerTotal += Deck.kartenWert(neueKarte, dealerTotal);
                     System.out.println("\nDealer zieht eine neue Karte: " + neueKarte.rank + neueKarte.suit);
+                    Pause.pausieren(1000); // Pause für 1 Sekunde
                     System.out.println("Neuer Dealer Gesamtwert: " + dealerTotal);
+                    System.out.println("――――――――――――――――――――――――――");    
                 }
                 
                 if (dealerTotal > 21) {
