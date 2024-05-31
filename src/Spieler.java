@@ -24,7 +24,7 @@ public class Spieler {
 	}
 	
 	public void Aufgeben(){
-		guthaben += einsatz / 2;
+		guthaben = einsatz / 2;
 	}
     
 	public void checkEinsatz(Scanner sc){
