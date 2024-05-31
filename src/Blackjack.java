@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Blackjack {
+	
     public static void main(String[] args) {
     	
-
     	
         Spieler spieler = new Spieler();
         Scanner sc = new Scanner(System.in);
