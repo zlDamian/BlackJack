@@ -1,14 +1,11 @@
 import java.util.Scanner;
 
 public class Blackjack {
-	
     public static void main(String[] args) {
-    	
-    	
         Spieler spieler = new Spieler();
         Scanner sc = new Scanner(System.in);
-        boolean ende = false;
-        
+        boolean beenden = false;
+
         System.out.println("Willkommen zu unserem Game!");
         System.out.println("――――――――――――――――――――――――――");
         System.out.println("  ♥♦ Black Jack ♣♠");
@@ -16,12 +13,52 @@ public class Blackjack {
 
         System.out.print("Gib deinen Spielernamen ein: ");
         spieler.name = sc.nextLine();
-     
+
+        while (!beenden) {
+            System.out.println("――――――――――――――――――――――――――");
+            System.out.println("Menü:");
+            System.out.println("1. Guthaben abfragen");
+            System.out.println("2. Geld aufladen");
+            System.out.println("3. Spielen");
+            System.out.println("4. Spiel verlassen");
+            System.out.println("Wähle eine Option: ");
+            System.out.println("――――――――――――――――――――――――――");
+            int option = sc.nextInt();
+
+            switch (option) {
+                case 1:
+                    System.out.println("\nDein aktuelles Guthaben beträgt: €" + spieler.guthaben);
+                    break;
+                case 2:
+                    System.out.print("\nGib den Betrag ein, den du aufladen möchtest: €");
+                    int betrag = sc.nextInt();
+                    spieler.guthaben += betrag;
+                    System.out.println("Dein Guthaben wurde um €" + betrag + " aufgeladen.");
+                    break;
+                case 3:
+                    spielen(spieler, sc);
+                    break;
+                case 4:
+                    beenden = true;
+                    break;
+                default:
+                    System.out.println("Ungültige Option. Bitte versuche es erneut.");
+                    break;
+            }
+        }
+
+        sc.close();
+        System.out.println("――――――――――――――――――――――――――");
+        System.out.println("Vielen Dank fürs Spielen. Auf Wiedersehen!");
+        System.out.println("――――――――――――――――――――――――――");
+    }
+
+    public static void spielen(Spieler spieler, Scanner sc) {
+        boolean ende = false;
+
         System.out.println("\nWillkommen " + spieler.name + ", dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
         System.out.println("Los gehts...");
-        
 
-        
         while (!ende && spieler.guthaben > 0) {
             Deck deck = new Deck();
             deck.erstelleDeck();
@@ -93,7 +130,8 @@ public class Blackjack {
                             System.out.println("\nDu hast den Wert 21 überschritten. Du hast verloren.");
                             spieler.Verloren();
                             spielerAmZug = false;
-                        }             
+                            rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
+                        }      
                         
                 	
 
@@ -110,12 +148,10 @@ public class Blackjack {
                             verdoppelt = true;
 
                             if (spielerTotal > 21) {
-                                System.out.println("Du hast den Wert 21 überschritten. Du hast verloren.");
-                                System.out.println("");
+                                System.out.println("\nDu hast den Wert 21 überschritten. Du hast verloren.");
                                 spieler.Verloren();
                                 spielerAmZug = false;
-                            } else {
-                                spielerAmZug = false;
+                                rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
                             }
                         } else {
                             	System.out.println("Du hast nicht genügend Guthaben zum Verdoppeln.");
@@ -188,7 +224,6 @@ public class Blackjack {
 
     
     public static void rundeBeenden(Spieler spieler, int dealerTotal, int spielerTotal, Scanner sc) {
-    	
         boolean ende = false;
 
         pausieren(2000); // Pause für 2 Sekunden
@@ -209,9 +244,7 @@ public class Blackjack {
             System.out.println("\nMöchtest du noch eine Runde spielen? (j/n)");
             String antwort = sc.next();
 
-            if (antwort.equalsIgnoreCase("j")) {
-                // Neues Spiel starten
-            } else {
+            if (!antwort.equalsIgnoreCase("j")) {
                 ende = true;
             }
         }
@@ -220,6 +253,7 @@ public class Blackjack {
             System.out.println("――――――――――――――――――――――――――");
             System.out.println("Vielen Dank fürs Spielen. Auf Wiedersehen!");
             System.out.println("――――――――――――――――――――――――――");
+            System.exit(0); // Programm beenden
         }
     }
     
