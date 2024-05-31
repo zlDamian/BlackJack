@@ -2,7 +2,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class Deck {
-
+//	private int spielerTotal;
+//	private int dealerTotal;
+//	
+//	public int getSpielerTotal() {
+//		return spielerTotal;
+//	}
+//	
+//	public void setSpielerTotal(int spielerTotal) {
+//		this.spielerTotal = spielerTotal;
+//	}
+//
+//	public int getDealerTotal() {
+//		return dealerTotal;
+//	}
+//	
+//	public void setDealerTotal(int dealerTotal) {
+//		this.dealerTotal = dealerTotal;
+//	}
+//	
 	public ArrayList<Card> deck; // Initialisierung des Decks
 	
     // Methode zum Erstellen des Kartendecks
@@ -31,6 +49,10 @@ class Deck {
         return null; // Gibt null zurück, falls das Deck leer ist
     }
     
+    
+    
+    
+    
     public static int kartenWert(Deck.Card karte, int spielerTotal) {
         if (karte.rank.equals("B") || karte.rank.equals("D") || karte.rank.equals("K")) {
             return 10;
@@ -41,11 +63,12 @@ class Deck {
                 return 1;
             }
         } else {
+        	//KP was parseInt ist
             return Integer.parseInt(karte.rank);
         }
     }
     
-    
+    //Check ich nicht
     
     class Card {
         String rank;

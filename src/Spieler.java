@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Spieler {
 	
@@ -25,6 +26,13 @@ public class Spieler {
 	public void Aufgeben(){
 		guthaben += einsatz / 2;
 	}
+    
+	public void checkEinsatz(Scanner sc){
+	while (einsatz < 1 || einsatz > guthaben) {
+        System.out.println("\nDein Einsatz ist ungültig, gib ihn nochmal ein");
+        einsatz = sc.nextInt();
+    }
+	}
 	
-
+	
 }

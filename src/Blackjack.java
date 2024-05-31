@@ -29,11 +29,7 @@ public class Blackjack {
             
             System.out.println("\nGib deinen Einsatz ein:");
             spieler.einsatz = sc.nextInt();
-            
-            while (spieler.einsatz < 1 || spieler.einsatz > spieler.guthaben) {
-                System.out.println("\nDein Einsatz ist ungültig, gib ihn nochmal ein");
-                spieler.einsatz = sc.nextInt();
-            }
+			spieler.checkEinsatz(sc);
             
 
             
