@@ -149,14 +149,15 @@ public class Blackjack {
             while (dealerTotal < 17) {
                 Deck.Card neueKarte = deck.zieheKarte();
                 dealerTotal += Deck.kartenWert(neueKarte, dealerTotal);
+                pausieren(2000); // Pause für 2 Sekunde
                 System.out.println("\nDealer zieht eine neue Karte: " + neueKarte.rank + neueKarte.suit);
-                pausieren(1000); // Pause für 1 Sekunde
                 System.out.println("Neuer Dealer Gesamtwert: " + dealerTotal);
                 System.out.println("――――――――――――――――――――――――――");
             }
 
             if (dealerTotal >= 17) {
-                System.out.println("\nDealer steht bei " + dealerTotal + " Punkten.");
+            	System.out.println("\nDein Gesamtwert: " + spielerTotal + " Punkte.");
+                System.out.println("Dealer steht bei " + dealerTotal + " Punkten.");
             }
 
             if (spielerTotal == 21) {
