@@ -228,24 +228,22 @@ public class Blackjack {
                 }
             }
 
-            rundeBeenden(spieler, dealerTotal, spielerTotal, sc);   
+            boolean spielBeenden = rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
+            if (spielBeenden) {
+                ende = true;
+            }
         }
-      
-        sc.close();
     }
-    
 
     
-    public static void rundeBeenden(Spieler spieler, int dealerTotal, int spielerTotal, Scanner sc) {
-        boolean ende = false;
-
+    public static boolean rundeBeenden(Spieler spieler, int dealerTotal, int spielerTotal, Scanner sc) {
         pausieren(2000); // Pause für 2 Sekunden
         System.out.println("Dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
 
         if (spieler.guthaben <= 0) {
             System.out.println("\n――――――――――――――――――――――――――");
             System.out.println("Du hast kein Guthaben mehr. Das Spiel ist beendet.");
-            ende = true;
+            return true;
         } else {
             if (dealerTotal == 21 && spielerTotal == 21) {
                 System.out.println("\n――――――――――――――――――――――――――");
@@ -257,16 +255,7 @@ public class Blackjack {
             System.out.println("\nMöchtest du noch eine Runde spielen? (j/n)");
             String antwort = sc.next();
 
-            if (!antwort.equalsIgnoreCase("j")) {
-                ende = true;
-            }
-        }
-
-        if (ende) {
-            System.out.println("――――――――――――――――――――――――――");
-            System.out.println("Vielen Dank fürs Spielen. Auf Wiedersehen!");
-            System.out.println("――――――――――――――――――――――――――");
-            System.exit(0); // Programm beenden
+            return !antwort.equalsIgnoreCase("j");
         }
     }
     
