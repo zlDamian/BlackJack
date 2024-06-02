@@ -130,14 +130,21 @@ public class Blackjack {
                         pausieren(1000); // Pause für 1 Sekunde
                         System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
                         System.out.println("――――――――――――――――――――――――――");
-                        // Prüft nach dem ziehen das du nicht über 21 bist
                         if (spielerTotal > 21) {
                             System.out.println("\nDu hast den Wert 21 überschritten. Du hast verloren.");
                             spieler.Verloren();
                             spielerAmZug = false;
-                            rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
-                            return; // Methode verlassen, um zu verhindern, dass der Dealer weitere Karten zieht
+                            if (rundeBeenden(spieler, dealerTotal, spielerTotal, sc)) {
+                                ende = true;
+                            } else {
+                                // Erneut nach dem Einsatz fragen und Überprüfung durchführen
+                                System.out.println("\nGib deinen Einsatz ein:");
+                                spieler.einsatz = sc.nextInt();
+                                spieler.checkEinsatz(sc);
+                            }
+                            break; // Schleife verlassen, um zur nächsten Runde überzugehen
                         }
+
                         
                      // Verdoppelt: Einsatz wird 2x und du bekommst eine neue Karte 
                         
