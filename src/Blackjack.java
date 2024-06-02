@@ -118,7 +118,7 @@ public class Blackjack {
                     System.out.println("\nWas möchstest du machen? (s)tehen, (k)arte, (v)erdoppeln, (a)ufgeben");
                     String antwort = sc.next();
                     
-                 	
+                    // Verdoppelt: Einsatz wird 2x und du bekommst eine neue Karte 
 
                     // Gibt dir eine neue Karte und Überprüft das du nicht Verdoppelt hast
                     if (antwort.equalsIgnoreCase("k") && !verdoppelt) {
@@ -136,10 +136,11 @@ public class Blackjack {
                             spieler.Verloren();
                             spielerAmZug = false;
                             rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
-                        }      
+                            return; // Methode verlassen, um zu verhindern, dass der Dealer weitere Karten zieht
+                        }
                         
-                	
-                        // Verdoppelt: Einsatz wird 2x und du bekommst eine neue Karte 
+                     // Verdoppelt: Einsatz wird 2x und du bekommst eine neue Karte 
+                        
                     } else if (antwort.equalsIgnoreCase("v") && !verdoppelt) {
                         if (spieler.guthaben >= spieler.einsatz * 2) {
                             spieler.einsatz *= 2;
@@ -161,8 +162,9 @@ public class Blackjack {
                         } else {
                             	System.out.println("Du hast nicht genügend Guthaben zum Verdoppeln.");
                            
-                 	// Aufgeben: Du gibst auf 
+                 	
                         }
+                     // Aufgeben: Du gibst auf 
                     } else if (antwort.equalsIgnoreCase("a")) {
                         System.out.println("Du hast Aufgegeben. Die Hälfte deines Einsatzes wird zurückerstattet.");
                         spieler.Aufgeben();
@@ -170,14 +172,19 @@ public class Blackjack {
                     // Stehen: Setzt den wert von spielerAmZug auf false und verlässt somit die Schleife  
                     } else if (antwort.equalsIgnoreCase("s")) {
                         spielerAmZug = false;
-                        
                     } else {
                         System.out.println("Ungültige Eingabe. Bitte versuche es erneut.");
                     }
                 }
             }
 
+            // Überprüfen, ob der Spieler bereits verloren hat
+            if (spielerTotal > 21) {
+                rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
+                return; // Methode verlassen, um zu verhindern, dass der Dealer weitere Karten zieht
+            }
 
+         
             // Aufdecken der Dealer Karten
             System.out.println("\nDealer Karten: " + dealerKarte1.rank + dealerKarte1.suit + ", " + dealerKarte2.rank + dealerKarte2.suit);
             System.out.println("Dealer Gesamtwert: " + dealerTotal);
