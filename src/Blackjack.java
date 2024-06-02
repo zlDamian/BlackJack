@@ -158,12 +158,13 @@ public class Blackjack {
                                 spieler.Verloren();
                                 spielerAmZug = false;
                                 rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
+                                return; // Methode verlassen, um zu verhindern, dass der Dealer weitere Karten zieht
                             }
                         } else {
                             	System.out.println("Du hast nicht genügend Guthaben zum Verdoppeln.");
-                           
-                 	
                         }
+                        
+                        
                      // Aufgeben: Du gibst auf 
                     } else if (antwort.equalsIgnoreCase("a")) {
                         System.out.println("Du hast Aufgegeben. Die Hälfte deines Einsatzes wird zurückerstattet.");
