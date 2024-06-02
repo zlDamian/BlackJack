@@ -44,9 +44,9 @@ class Deck {
     
     public Karte zieheKarte() {
         if (!deck.isEmpty()) {
-            return deck.remove(deck.size() - 1); // Zieht die oberste Karte vom Deck.
+            return deck.remove(deck.size() - 1); // Zieht die oberste Karte vom Deck
         }
-        return null; // Gibt null zurück, falls das Deck leer ist.
+        return null; // Gibt null zurück, falls das Deck leer ist
     }
     
     
@@ -54,10 +54,10 @@ class Deck {
     
     
     public static int kartenWert(Deck.Karte karte, int spielerTotal) {
-    	// Überprüfung der Karte nach Bube, Dame, König wenn ja gib wert 10.
+    	// Überprüfung der Karte nach Bube, Dame, König wenn ja gib wert 10
         if (karte.rank.equals("B") || karte.rank.equals("D") || karte.rank.equals("K")) {
             return 10;
-            // Überprüfung auf Ass wenn ja dann guck ob mit einer 11 der Wert unter 21 bleibt wenn ja gib 11 wenn nein 1.
+            // Überprüfung auf Ass wenn ja dann guck ob mit einer 11 der Wert unter 21 bleibt wenn ja gib 11 wenn nein 1
         } else if (karte.rank.equals("A")) {
             if (spielerTotal + 11 <= 21) {
                 return 11;
@@ -65,12 +65,12 @@ class Deck {
                 return 1;
             }
         } else {
-        	//Wandelt den String der Karte in einen Int um und teilt diesen dem Wert auch zu.
+        	// Wandelt den String der Karte in einen Int um und teilt diesen dem Wert auch zu
             return Integer.parseInt(karte.rank);
         }
     }
     
-    //Werte der Karte werden hinterlegt für das Deck.
+    // Werte der Karte werden hinterlegt für das Deck
     
     class Karte {
         String rank;

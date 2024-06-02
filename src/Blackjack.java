@@ -5,15 +5,15 @@ public class Blackjack {
         Spieler spieler = new Spieler();
         Scanner sc = new Scanner(System.in);
         boolean beenden = false;
-
+        // Start des Spiels
         System.out.println("Willkommen zu unserem Game!");
         System.out.println("――――――――――――――――――――――――――");
         System.out.println("  ♥♦ Black Jack ♣♠");
         System.out.println("――――――――――――――――――――――――――");
-
+        // Abfrage nach Namen
         System.out.print("Gib deinen Spielernamen ein: ");
         spieler.name = sc.nextLine();
-
+        // Spiel Menü
         while (!beenden) {
             System.out.println("――――――――――――――――――――――――――");
             System.out.println("Menü:");
@@ -24,20 +24,24 @@ public class Blackjack {
             System.out.println("Wähle eine Option: ");
             System.out.println("――――――――――――――――――――――――――");
             int option = sc.nextInt();
-
+            // Auswählmöglichkeiten
             switch (option) {
+            	// Ausgabe des akutellen Guthabens
                 case 1:
                     System.out.println("\nDein aktuelles Guthaben beträgt: €" + spieler.guthaben);
                     break;
+                // Aufladen des Guthabens
                 case 2:
                     System.out.print("\nGib den Betrag ein, den du aufladen möchtest: €");
                     int betrag = sc.nextInt();
                     spieler.guthaben += betrag;
                     System.out.println("Dein Guthaben wurde um €" + betrag + " aufgeladen.");
                     break;
+                // Spiel starten    
                 case 3:
                     spielen(spieler, sc);
                     break;
+                // Spiel beenden    
                 case 4:
                     beenden = true;
                     break;
@@ -46,7 +50,7 @@ public class Blackjack {
                     break;
             }
         }
-
+        // Abschied
         sc.close();
         System.out.println("――――――――――――――――――――――――――");
         System.out.println("Vielen Dank fürs Spielen. Auf Wiedersehen!");
@@ -55,21 +59,22 @@ public class Blackjack {
 
     public static void spielen(Spieler spieler, Scanner sc) {
         boolean ende = false;
-
+// Willkommensnachricht
         System.out.println("\nWillkommen " + spieler.name + ", dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
         System.out.println("Los gehts...");
 
         while (!ende && spieler.guthaben > 0) {
+        	// Deck erstellen und mischen
             Deck deck = new Deck();
             deck.erstelleDeck();
             deck.mischeDeck();
-            
+            // Abfrage nach dem Einsatz und Überprüfung dessen
             System.out.println("\nGib deinen Einsatz ein:");
             spieler.einsatz = sc.nextInt();
 			spieler.checkEinsatz(sc);
             
 
-            
+            // Verteilung der Karten
             Deck.Karte spielerKarte1 = deck.zieheKarte();
             System.out.println("\n――――――――――――――――――――――――――");
             System.out.println("Deine Karten werden ausgeteilt...");
@@ -89,10 +94,10 @@ public class Blackjack {
             Deck.Karte dealerKarte2 = deck.zieheKarte();
             pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Die zweite Karte des Dealers bleibt verdeckt.");
-
+            // Gesamtwert der Karten
             int spielerTotal = Deck.kartenWert(spielerKarte1, 0) + Deck.kartenWert(spielerKarte2, Deck.kartenWert(spielerKarte1, 0));
             int dealerTotal = Deck.kartenWert(dealerKarte1, 0) + Deck.kartenWert(dealerKarte2, Deck.kartenWert(dealerKarte1, 0));
-
+            // Übersicht der Karten
             System.out.println("――――――――――――――――――――――――――");
             System.out.println("\n\nDeine Karten: " + spielerKarte1.rank + spielerKarte1.suit + ", " + spielerKarte2.rank + spielerKarte2.suit);
             System.out.println("Dein Gesamtwert: " + spielerTotal);
@@ -104,7 +109,7 @@ public class Blackjack {
             
             boolean spielerAmZug = true;
             boolean verdoppelt = false;
-
+            // Ausgabe falls Blackjack und Abfrage des nächsten Schrittes
             while (spielerAmZug) {
                 if (spielerTotal == 21) {
                     System.out.println("\nBLACKJACK!");
@@ -115,7 +120,7 @@ public class Blackjack {
                     
                  	
 
-                    
+                    // Gibt dir eine neue Karte und Überprüft das du nicht Verdoppelt hast
                     if (antwort.equalsIgnoreCase("k") && !verdoppelt) {
                         Deck.Karte neueKarte = deck.zieheKarte();
                         spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
@@ -125,7 +130,7 @@ public class Blackjack {
                         pausieren(1000); // Pause für 1 Sekunde
                         System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
                         System.out.println("――――――――――――――――――――――――――");
-
+                        // Prüft nach dem ziehen das du nicht über 21 bist
                         if (spielerTotal > 21) {
                             System.out.println("\nDu hast den Wert 21 überschritten. Du hast verloren.");
                             spieler.Verloren();
@@ -134,7 +139,7 @@ public class Blackjack {
                         }      
                         
                 	
-
+                        // Verdoppelt: Einsatz wird 2x und du bekommst eine neue Karte 
                     } else if (antwort.equalsIgnoreCase("v") && !verdoppelt) {
                         if (spieler.guthaben >= spieler.einsatz * 2) {
                             spieler.einsatz *= 2;
@@ -146,7 +151,7 @@ public class Blackjack {
                             System.out.println("Deine neue Karte: " + neueKarte.rank + neueKarte.suit);
                             System.out.println("Dein neuer Gesamtwert: " + spielerTotal);
                             verdoppelt = true;
-
+                         // Prüft nach dem Verdoppeln das du nicht über 21 bist
                             if (spielerTotal > 21) {
                                 System.out.println("\nDu hast den Wert 21 überschritten. Du hast verloren.");
                                 spieler.Verloren();
@@ -156,13 +161,13 @@ public class Blackjack {
                         } else {
                             	System.out.println("Du hast nicht genügend Guthaben zum Verdoppeln.");
                            
-                 	
+                 	// Aufgeben: Du gibst auf 
                         }
                     } else if (antwort.equalsIgnoreCase("a")) {
                         System.out.println("Du hast Aufgegeben. Die Hälfte deines Einsatzes wird zurückerstattet.");
                         spieler.Aufgeben();
                         rundeBeenden(spieler, dealerTotal, spielerTotal, sc);
-                        
+                    // Stehen: Setzt den wert von spielerAmZug auf false und verlässt somit die Schleife  
                     } else if (antwort.equalsIgnoreCase("s")) {
                         spielerAmZug = false;
                         
@@ -173,11 +178,11 @@ public class Blackjack {
             }
 
 
-            
+            // Aufdecken der Dealer Karten
             System.out.println("\nDealer Karten: " + dealerKarte1.rank + dealerKarte1.suit + ", " + dealerKarte2.rank + dealerKarte2.suit);
             System.out.println("Dealer Gesamtwert: " + dealerTotal);
             System.out.println("――――――――――――――――――――――――――");
-
+            // Wenn der Dealer unter 17 ist ziehe noch eine Karte
             while (dealerTotal < 17) {
                 Deck.Karte neueKarte = deck.zieheKarte();
                 dealerTotal += Deck.kartenWert(neueKarte, dealerTotal);
@@ -186,7 +191,7 @@ public class Blackjack {
                 System.out.println("Neuer Dealer Gesamtwert: " + dealerTotal);
                 System.out.println("――――――――――――――――――――――――――");
             }
-
+            // Gibt deinen Wert aus und die des Dealers
             if (dealerTotal >= 17) {
             	System.out.println("\nDein Gesamtwert: " + spielerTotal + " Punkte.");
                 System.out.println("Dealer steht bei " + dealerTotal + " Punkten.");
