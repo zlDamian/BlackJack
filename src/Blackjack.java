@@ -204,7 +204,7 @@ public class Blackjack {
             	System.out.println("\nDein Gesamtwert: " + spielerTotal + " Punkte.");
                 System.out.println("Dealer steht bei " + dealerTotal + " Punkten.");
             }
-
+            // Mögliche Ausgänge des Spiels und deren Ausgabe + beendet die Runde
             if (spielerTotal == 21) {
                 if (dealerTotal == 21) {
                     System.out.println("\nUnentschieden! Beide haben Blackjack.");
@@ -238,7 +238,7 @@ public class Blackjack {
     
     public static void rundeBeenden(Spieler spieler, int dealerTotal, int spielerTotal, Scanner sc) {
         boolean ende = false;
-
+// Wert des aktuellen Guthabens + weiterspielen falls noch genug Geld
         pausieren(2000); // Pause für 2 Sekunden
         System.out.println("Dein aktuelles Guthaben beträgt: €" + spieler.guthaben);
 
@@ -261,7 +261,7 @@ public class Blackjack {
                 ende = true;
             }
         }
-
+        //Spiel Ende
         if (ende) {
             System.out.println("――――――――――――――――――――――――――");
             System.out.println("Vielen Dank fürs Spielen. Auf Wiedersehen!");
