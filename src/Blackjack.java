@@ -70,23 +70,23 @@ public class Blackjack {
             
 
             
-            Deck.Card spielerKarte1 = deck.zieheKarte();
+            Deck.Karte spielerKarte1 = deck.zieheKarte();
             System.out.println("\n――――――――――――――――――――――――――");
             System.out.println("Deine Karten werden ausgeteilt...");
             pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Deine erste Karte: " + spielerKarte1.rank + spielerKarte1.suit);
 
-            Deck.Card spielerKarte2 = deck.zieheKarte();
+            Deck.Karte spielerKarte2 = deck.zieheKarte();
             pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Deine zweite Karte: " + spielerKarte2.rank + spielerKarte2.suit);
 
-            Deck.Card dealerKarte1 = deck.zieheKarte();
+            Deck.Karte dealerKarte1 = deck.zieheKarte();
             System.out.println("――――――――――――――――――――――――――");
             System.out.println("Die Karten des Dealers werden ausgeteilt");
             pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Dealer Karte: " + dealerKarte1.rank + dealerKarte1.suit);
 
-            Deck.Card dealerKarte2 = deck.zieheKarte();
+            Deck.Karte dealerKarte2 = deck.zieheKarte();
             pausieren(1000); // Pause für 1 Sekunde
             System.out.println("Die zweite Karte des Dealers bleibt verdeckt.");
 
@@ -117,7 +117,7 @@ public class Blackjack {
 
                     
                     if (antwort.equalsIgnoreCase("k") && !verdoppelt) {
-                        Deck.Card neueKarte = deck.zieheKarte();
+                        Deck.Karte neueKarte = deck.zieheKarte();
                         spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
                         System.out.println("Eine Karte wird für dich ausgeteilt...");
                         pausieren(1000); // Pause für 1 Sekunde
@@ -139,7 +139,7 @@ public class Blackjack {
                         if (spieler.guthaben >= spieler.einsatz * 2) {
                             spieler.einsatz *= 2;
                             System.out.println("Dein Einsatz wurde verdoppelt: €" + spieler.einsatz);
-                            Deck.Card neueKarte = deck.zieheKarte();
+                            Deck.Karte neueKarte = deck.zieheKarte();
                             spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
                             System.out.println("Eine Karte wird für dich ausgeteilt...");
                             pausieren(1000); // Pause für 1 Sekunde
@@ -179,7 +179,7 @@ public class Blackjack {
             System.out.println("――――――――――――――――――――――――――");
 
             while (dealerTotal < 17) {
-                Deck.Card neueKarte = deck.zieheKarte();
+                Deck.Karte neueKarte = deck.zieheKarte();
                 dealerTotal += Deck.kartenWert(neueKarte, dealerTotal);
                 pausieren(2000); // Pause für 2 Sekunde
                 System.out.println("\nDealer zieht eine neue Karte: " + neueKarte.rank + neueKarte.suit);

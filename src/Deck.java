@@ -21,7 +21,7 @@ class Deck {
 //		this.dealerTotal = dealerTotal;
 //	}
 //	
-	public ArrayList<Card> deck; // Initialisierung des Decks
+	public ArrayList<Karte> deck; // Initialisierung des Decks
 	
     // Methode zum Erstellen des Kartendecks
     public void erstelleDeck() {
@@ -32,7 +32,7 @@ class Deck {
         
         for (String suit : farbe) {
             for (String rank : wert) {
-                deck.add(new Card(rank, suit));
+                deck.add(new Karte(rank, suit));
             }
         }
     }
@@ -42,7 +42,7 @@ class Deck {
         Collections.shuffle(deck);
     }
     
-    public Card zieheKarte() {
+    public Karte zieheKarte() {
         if (!deck.isEmpty()) {
             return deck.remove(deck.size() - 1); // Zieht die oberste Karte vom Deck
         }
@@ -53,9 +53,11 @@ class Deck {
     
     
     
-    public static int kartenWert(Deck.Card karte, int spielerTotal) {
+    public static int kartenWert(Deck.Karte karte, int spielerTotal) {
+    	// Überprüfung der Karte nach Bube, Dame, König wenn ja gib wert 10 
         if (karte.rank.equals("B") || karte.rank.equals("D") || karte.rank.equals("K")) {
             return 10;
+            // Überprüfung auf Ass wenn ja dann guck ob mit einer 11 der Wert unter 21 bleibt wenn ja gib 11 wenn nein 1
         } else if (karte.rank.equals("A")) {
             if (spielerTotal + 11 <= 21) {
                 return 11;
@@ -63,18 +65,18 @@ class Deck {
                 return 1;
             }
         } else {
-        	//KP was parseInt ist
+        	//Wandelt den String der Karte in einen Int um und teilt diesen dem Wert auch zu.
             return Integer.parseInt(karte.rank);
         }
     }
     
-    //Check ich nicht
+    //Werte der Karte werden hinterlegt für das Deck
     
-    class Card {
+    class Karte {
         String rank;
         String suit;
         
-        Card(String rank, String suit) {
+        Karte(String rank, String suit) {
             this.rank = rank;
             this.suit = suit;
         }
