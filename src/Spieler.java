@@ -27,7 +27,8 @@ public class Spieler {
     }
 
     public void Aufgeben() {
-        guthaben -= einsatz / 2;
+    	einsatz = einsatz / 2;
+    	guthaben -= einsatz;
     }
 
     // Prüft den Einsatz
