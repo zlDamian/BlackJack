@@ -128,6 +128,7 @@ public class Blackjack {
 			if (spielerTotal == 21) {
 				System.out.println("\nBLACKJACK!");
 				spielerAmZug = false;
+				
 			} else {
 				while (spielerAmZug) {
 					System.out.println("\nWas möchstest du machen? (s)tehen, (k)arte, (v)erdoppeln, (a)ufgeben");
@@ -135,6 +136,7 @@ public class Blackjack {
 
 					// Gibt dir eine neue Karte und Überprüft das du nicht Verdoppelt hast
 					if (antwort.equalsIgnoreCase("k") && !verdoppelt) {
+						
 						Deck.Karte neueKarte = deck.zieheKarte();
 						spielerTotal += Deck.kartenWert(neueKarte, spielerTotal);
 						System.out.println("Eine Karte wird für dich ausgeteilt...");
@@ -153,6 +155,7 @@ public class Blackjack {
 						}
 						// Verdoppelt: Einsatz wird 2x und du bekommst eine neue Karte
 					} else if (antwort.equalsIgnoreCase("v") && !verdoppelt) {
+						
 						if (spieler.guthaben >= spieler.einsatz * 2) {
 							spieler.einsatz *= 2;
 							System.out.println("Dein Einsatz wurde verdoppelt: €" + spieler.einsatz);
@@ -176,6 +179,7 @@ public class Blackjack {
 						}
 						// Aufgeben: Du gibst auf
 					} else if (antwort.equalsIgnoreCase("a")) {
+						
 						System.out.println("Du hast Aufgegeben. Die Hälfte deines Einsatzes wird zurückerstattet.");
 						spieler.Aufgeben();
 						spielerAmZug = false; // Spieler gibt auf und beendet den Zug
@@ -229,15 +233,19 @@ public class Blackjack {
 					if (dealerTotal > 21) {
 						System.out.println("\nDealer hat den Wert 21 überschritten. Du hast gewonnen!");
 						spieler.Gewonnen();
+						
 					} else if (dealerTotal == spielerTotal) {
 						System.out.println("\nUnentschieden! Beide haben den gleichen Gesamtwert.");
 						spieler.Unentschieden();
+						
 					} else if (dealerTotal > spielerTotal) {
 						System.out.println("\nDealer hat einen höheren Gesamtwert. Du hast verloren.");
 						spieler.Verloren();
+						
 					} else {
 						System.out.println("\nDu hast einen höheren Gesamtwert. Du hast gewonnen!");
 						spieler.Gewonnen();
+						
 					}
 				}
 			}
@@ -259,13 +267,7 @@ public class Blackjack {
 			System.out.println("Du hast kein Guthaben mehr. Das Spiel ist beendet.");
 			return true; // Signalisiert, dass das Spiel beendet ist
 		} else {
-			if (dealerTotal == 21 && spielerTotal == 21) {
-				System.out.println("\n――――――――――――――――――――――――――");
-				System.out.println("Unentschieden! Beide haben Blackjack.");
-				System.out.println("Dein Einsatz wird zurückerstattet.");
-				spieler.Unentschieden();
-			}
-
+			
 			System.out.println("\nMöchtest du noch eine Runde spielen? (j/n)");
 			String antwort = sc.next();
 			if (antwort.equalsIgnoreCase("n")) {
